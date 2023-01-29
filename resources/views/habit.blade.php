@@ -1,8 +1,22 @@
+<!doctype html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <p>Habit</p>
-        <p>{{ $habit }}</p>
+        <table>
+            <tr class="text-3xl font-bold">
+                <th>user name</th>
+                <th>user email</th>
+            </tr>
+            @foreach ($users as $user)
+            <tr>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+            </tr>
+            @endforeach
+        </table>
     </body>
 </html>
