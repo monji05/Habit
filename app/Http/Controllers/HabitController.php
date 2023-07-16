@@ -3,23 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
-class HabitController extends Controller {
+class HabitController extends Controller
+{
+    private $user = null;
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     public function index()
     {
-        $users = $this->getAllUsers();
-        return view('habit', [
+        $users = $this->user->find();
+        return view(
+            'habit',
+            [
                 'users' => $users,
-                'habit' => 'Hello from HabitController'
             ]
         );
-    }
-
-    private function getAllUsers()
-    {
-        $users = DB::table('users')->select('name', 'email')->get();
-        return $users;
     }
 }
